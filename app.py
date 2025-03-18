@@ -24,9 +24,23 @@ students = [
 
     ]
 
+@todo.route('/students-list/restapi')
+def students_list_restapi():
+    import requests
+
+    url = "https://demo-application-9txd.onrender.com/students-list"
+
+
+    response = requests.request("GET", url)
+
+
+    return response.json()
+
 @todo.route('/student-list')
 def student_list():
     return jsonify(students)
+
+
 
 @todo.route('/student/get/<int:id>',methods=['GET'])
 def student_id(id):
@@ -37,9 +51,9 @@ def student_id(id):
 
     return jsonify(student)
 
+
+
 if __name__=='__main__':
     todo.run(
-        host='127.0.0.1',
-        port=5010,
         debug=True
     )
